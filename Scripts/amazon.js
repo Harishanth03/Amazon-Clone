@@ -1,6 +1,6 @@
-import { products} from "../data/products.js";
+import { products } from "../data/products.js";
 
-import { cart } from "../data/cart.js";
+import { cart , addToCart } from "../data/cart.js";
 
 //============================ We need to create a loop throw an array for genegrate the HTML for every product ======================
 
@@ -65,6 +65,19 @@ products.forEach(products => {
 
 document.querySelector('.js-product-grid').innerHTML = productHtml; 
 
+function updateCartQuantity()
+{
+  let totalQuantity = 0;
+
+  cart.forEach(cartitems => {
+
+    totalQuantity += cartitems.quantity;
+
+    document.querySelector('.cart-quantity').innerHTML = totalQuantity;
+
+  });
+}
+
 //select all button throw querySelectorAll then create a foreach loop for button and set the button as parameter
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
@@ -72,41 +85,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     button.addEventListener('click', () => {
 
-        const productId = button.dataset.productId;
+      const productId = button.dataset.productId;
 
-        let matchingItem;
+      addToCart(productId);
 
-        cart.forEach(items => {
-
-            if(productId === items.productId)
-            {
-                matchingItem = items;
-            }
-
-        });
-
-        if(matchingItem)
-        {
-            matchingItem.quantity += 1;
-        }
-        else
-        {
-            cart.push({
-
-                productId : productId,
-    
-                quantity : 1
-            });
-        }
-
-        let totalQuantity = 0;
-
-        cart.forEach(items => {
-
-            totalQuantity += items.quantity;
-        });
-
-        document.querySelector('.cart-quantity').innerHTML = totalQuantity;
+      updateCartQuantity();   
 
     });
 
