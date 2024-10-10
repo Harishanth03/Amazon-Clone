@@ -1,5 +1,7 @@
 import { products} from "../data/products.js";
 
+import { cart } from "../data/cart.js";
+
 //============================ We need to create a loop throw an array for genegrate the HTML for every product ======================
 
 // when every time loop works every product comes to function and generate the HTML
@@ -54,12 +56,52 @@ products.forEach(products => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id = "${products.id}">
             Add to Cart
           </button>
         </div>
     `
 });
 
-document.querySelector('.js-product-grid').innerHTML = productHtml;
+document.querySelector('.js-product-grid').innerHTML = productHtml; 
+
+//select all button throw querySelectorAll then create a foreach loop for button and set the button as parameter
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+
+    // create a event listner for all button
+
+    button.addEventListener('click', () => {
+
+        const productId = button.dataset.productId;
+
+        let matchingItem;
+
+        cart.forEach(items => {
+
+            if(productId === items.productId)
+            {
+                matchingItem = items;
+            }
+
+        });
+
+        if(matchingItem)
+        {
+            matchingItem.quantity += 1;
+        }
+        else
+        {
+            cart.push({
+
+                productId : productId,
+    
+                quantity : 1
+            });
+        }
+
+        console.log(cart);
+    });
+});
+
+
 
