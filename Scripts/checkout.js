@@ -101,19 +101,6 @@ cart.forEach(cartItem => {
     `;
 });
 
-function updateCartQuantity()
-{
-  let totalQuantity = 0;
-
-  cart.forEach(cartitems => {
-
-    totalQuantity += cartitems.quantity;
-
-    document.querySelector('.js-return-to-home-link').innerHTML = `${totalQuantity} items`;
-
-  });
-};
-
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
 document.querySelectorAll('.js-delete-quantity-link').forEach(link => 
@@ -128,14 +115,26 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(link =>
 
         container.remove();
 
-        initializeCartQuantity();
+        updateCartQuantity();
     });
-}
+});
 
-);
+function updateCartQuantity()
+{
+  let cartQuantity = 0;
+  
+  cart.forEach(cartItem => {
 
+    cartQuantity += cartItem.quantity;
 
+    document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity} items`;
+  });
+
+};
 
 updateCartQuantity();
+
+
+
 
 
