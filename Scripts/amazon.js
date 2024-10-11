@@ -67,18 +67,7 @@ products.forEach(products => {
 
 document.querySelector('.js-product-grid').innerHTML = productHtml; 
 
-function updateCartQuantity()
-{
-  let totalQuantity = 0;
 
-  cart.forEach(cartitems => {
-
-    totalQuantity += cartitems.quantity;
-
-    document.querySelector('.cart-quantity').innerHTML = totalQuantity;
-
-  });
-}
 
 //select all button throw querySelectorAll then create a foreach loop for button and set the button as parameter
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
@@ -99,5 +88,18 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
 console.log(cart);
 
+function updateCartQuantity()
+{
+  let totalQuantity = 0;
 
+  cart.forEach(cartitems => {
+
+    totalQuantity += cartitems.quantity;
+
+    document.querySelector('.cart-quantity').innerHTML = totalQuantity;
+
+  });
+};
+
+updateCartQuantity();
 
