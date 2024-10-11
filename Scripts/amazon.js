@@ -2,6 +2,8 @@ import { products } from "../data/products.js";
 
 import { cart , addToCart } from "../data/cart.js";
 
+import { formatCurrency } from "./utils/money.js";
+
 //============================ We need to create a loop throw an array for genegrate the HTML for every product ======================
 
 // when every time loop works every product comes to function and generate the HTML
@@ -31,7 +33,7 @@ products.forEach(products => {
           </div>
 
           <div class="product-price">
-            $${(products.priceCents / 100).toFixed(2)}
+            $${formatCurrency(products.priceCents / 100)}
           </div>
 
           <div class="product-quantity-container">
@@ -94,6 +96,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     });
 
 });
+
+console.log(cart);
 
 
 
