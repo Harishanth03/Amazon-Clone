@@ -101,7 +101,6 @@ cart.forEach(cartItem => {
     `;
 });
 
-console.log(cart);
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
 document.querySelectorAll('.js-delete-quantity-link').forEach(link => 
@@ -109,6 +108,7 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(link =>
     link.addEventListener('click', () =>
     {
         const productIds = link.dataset.productId;
+
         removeCart(productIds);
 
         const container = document.querySelector(`.js-cart-item-container-${productIds}`);
