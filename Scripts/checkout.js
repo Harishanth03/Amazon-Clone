@@ -1,4 +1,4 @@
-import {cart , removeCart , calculateCartQuantity} from '../data/cart.js';
+import {cart , removeCart , calculateCartQuantity , updateQuantity} from '../data/cart.js';
 
 import {products} from '../data/products.js';
 
@@ -9,51 +9,51 @@ let cartSummaryHTML = '';
 
 cart.forEach(cartItem => {
 
-    const checkProductId = cartItem.productId;
+    const productId = cartItem.productId;
 
-    let finalProduct;
+    let matchingProduct;
 
-    products.forEach(productItem => 
+    products.forEach(product => 
     {
-        if(productItem.id === checkProductId)
+        if(product.id === productId)
         {
-            finalProduct = productItem;
-        }
+          matchingProduct = product;
+        };
     }
     );
 
     cartSummaryHTML += `
-        <div class="cart-item-container js-cart-item-container-${finalProduct.id}">
+        <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
 
             <div class="cart-item-details-grid">
               <img class="product-image"
-                src="${finalProduct.image}">
+                src="${matchingProduct.image}">
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  ${finalProduct.name}
+                  ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                   $ ${formatCurrency(finalProduct.priceCents / 100)}
+                   $ ${formatCurrency(matchingProduct.priceCents / 100)}
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary js-update-quantity-link" data-update-product-id = ${finalProduct.id}>
+                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id = ${matchingProduct.id}>
                     Update
                   </span>
                   
-                  <input class="quantity-input js-quantity-input-${finalProduct.id}" </input>
+                  <input class="quantity-input js-quantity-input-${matchingProduct.id}" </input>
 
                   <span class="save-quantity-link link-primary js-save-link"
-                    data-product-id="${finalProduct.id}">
+                    data-product-id="${matchingProduct.id}">
                     Save
                   </span>
-                  <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id = ${finalProduct.id}>
+                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id = ${matchingProduct.id}>
                     Delete
                   </span>
                 </div>
@@ -66,7 +66,7 @@ cart.forEach(cartItem => {
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-${finalProduct.id}">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -79,7 +79,7 @@ cart.forEach(cartItem => {
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${finalProduct.id}">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -92,7 +92,7 @@ cart.forEach(cartItem => {
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${finalProduct.id}">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13
@@ -109,16 +109,16 @@ cart.forEach(cartItem => {
 });
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
-
-document.querySelectorAll('.js-delete-quantity-link').forEach(link => 
+//========================================================================================================================================
+document.querySelectorAll('.js-delete-link').forEach(link => 
 {
     link.addEventListener('click', () =>
     {
-        const productIds = link.dataset.productId;
+        const productId = link.dataset.productId;
 
-        removeCart(productIds);
+        removeCart(productId);
 
-        const container = document.querySelector(`.js-cart-item-container-${productIds}`);
+        const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
         container.remove();
 
@@ -141,7 +141,7 @@ document.querySelectorAll('.js-update-quantity-link').forEach(link => {
 
   link.addEventListener('click', () =>{
 
-    const productId = link.dataset.updateProductId;
+    const productId = link.dataset.productId;
 
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
@@ -162,10 +162,19 @@ document.querySelectorAll('.js-save-link').forEach((link) =>
 
     const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
 
-    const newQuantity = Number(quantityInput.value);     
+    const newQuantity = Number(quantityInput.value); 
+    
+    updateQuantity(productId , newQuantity);
+
+    const quantityLable = document.querySelector(`.js-quantity-label-${productId}`);
+
+    quantityLable.innerHTML = newQuantity;
+
+    updateCartQuantity();
   });
 
 });
+
  
 
 

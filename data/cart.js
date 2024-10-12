@@ -82,4 +82,37 @@ export function calculateCartQuantity()
   });
 
   return cartQuantity;
+};
+
+export function updateQuantity(productId, newQuantity) 
+{
+  let matchingItem = null;
+
+  // Find the cart item by matching the productId
+  cart.forEach(cartItem => 
+  {
+
+    if (cartItem.productId === productId) 
+    {
+      matchingItem = cartItem;
+    }
+
+  });
+
+  // Check if the item was found before updating
+  if (matchingItem) 
+  {
+
+    matchingItem.quantity = newQuantity;
+
+    // Save the updated cart to storage (assuming saveToStorage persists the cart)
+    saveToStorage();
+
+  } 
+  else 
+  {
+
+    console.error(`Product with ID ${productId} not found in the cart.`);
+
+  }
 }
