@@ -4,6 +4,20 @@ import {products} from '../data/products.js';
 
 import { formatCurrency } from './utils/money.js';
 
+//=================================================== Define Today Date =============================================================
+
+const today = dayjs();
+
+
+const currentDate = today.format('dddd , MMMM D');
+
+//=================================================== Define 7 Days delivery ========================================================
+
+const deliveryDate = today.add(7 , 'days');
+
+const deliveryDateString = deliveryDate.format('dddd , MMMM D');
+
+//=================================================== Define  Days delivery ========================================================
 
 let cartSummaryHTML = '';
 
@@ -25,7 +39,7 @@ cart.forEach(cartItem => {
     cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${currentDate}
             </div>
 
             <div class="cart-item-details-grid">
@@ -69,7 +83,7 @@ cart.forEach(cartItem => {
                     name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
-                      Tuesday, June 21
+                      ${deliveryDateString}
                     </div>
                     <div class="delivery-option-price">
                       FREE Shipping
