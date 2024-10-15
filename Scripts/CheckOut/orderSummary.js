@@ -49,7 +49,7 @@ export function rendorOrderSummery()
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                   $ ${formatCurrency(matchingProduct.priceCents / 100)}
+                   $ ${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -91,7 +91,7 @@ function deliveryOptionHTML(matchingProduct , cartItem)
 
     const dataString = calculateDeliveryOption(deliveryOption);
 
-    const priceString = deliveryOption.priceCents === 0 ? 'Free Delivery' : `$${formatCurrency(deliveryOption.priceCents / 100)} -`;
+    const priceString = deliveryOption.priceCents === 0 ? 'Free Delivery' : `$${formatCurrency(deliveryOption.priceCents)} -`;
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
     
