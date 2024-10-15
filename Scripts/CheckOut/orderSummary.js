@@ -8,6 +8,8 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 import { deliveryOptions , getDeliveryOption } from '../../data/deliveryOption.js';
 
+import { renderPaymentSummary } from './paymentSummary.js';
+
 export function rendorOrderSummery()
 {
   let cartSummaryHTML = '';
@@ -143,6 +145,8 @@ document.querySelectorAll('.js-delete-link').forEach(link =>
         container.remove();
 
         updateCartQuantity();
+
+        renderPaymentSummary();
     });
 });
 
@@ -166,6 +170,8 @@ document.querySelectorAll('.js-update-quantity-link').forEach(link => {
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
     container.classList.add('is-editing-quantity');
+
+    renderPaymentSummary();
   });
   
 });
@@ -191,6 +197,8 @@ document.querySelectorAll('.js-save-link').forEach((link) =>
     quantityLable.innerHTML = newQuantity;
 
     updateCartQuantity();
+
+    renderPaymentSummary();
   });
 
 });
@@ -204,6 +212,8 @@ document.querySelectorAll('.js-delivery-option').forEach((element) =>
     updateDeliveryOption(productId , deliveryOptionId);
 
     rendorOrderSummery(); // its help to instand reload of the page
+
+    renderPaymentSummary();
   });
 });
 }
