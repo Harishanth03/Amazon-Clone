@@ -9,7 +9,7 @@ if(!cart)
   
       quantity: 2,
 
-      deliveryOptionId : '2'
+      deliveryOptionId : '1'
     },
   
     {
