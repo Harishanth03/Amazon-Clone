@@ -10,6 +10,8 @@ import { deliveryOptions , getDeliveryOption } from '../../data/deliveryOption.j
 
 import { renderPaymentSummary } from './paymentSummary.js';
 
+import { renderCheckoutHeader } from './checkoutheader.js';
+
 export function rendorOrderSummery()
 {
   let cartSummaryHTML = '';
@@ -147,6 +149,8 @@ document.querySelectorAll('.js-delete-link').forEach(link =>
         updateCartQuantity();
 
         renderPaymentSummary();
+
+        renderCheckoutHeader();
     });
 });
 
@@ -172,6 +176,8 @@ document.querySelectorAll('.js-update-quantity-link').forEach(link => {
     container.classList.add('is-editing-quantity');
 
     renderPaymentSummary();
+
+    renderCheckoutHeader();
   });
   
 });
@@ -199,6 +205,8 @@ document.querySelectorAll('.js-save-link').forEach((link) =>
     updateCartQuantity();
 
     renderPaymentSummary();
+
+    renderCheckoutHeader();
   });
 
 });
