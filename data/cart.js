@@ -9,7 +9,6 @@ if(!cart)
   
       quantity: 2,
 
-      deliveryOptionId : '1'
     },
   
     {
@@ -17,7 +16,6 @@ if(!cart)
   
       quantity: 1,
 
-      deliveryOptionId : '2'
     }
   
   ];
@@ -54,7 +52,6 @@ export function addToCart(productId)
 
     quantity : 1,
 
-    deliveryOptionId : '1'
   });
   }
 
