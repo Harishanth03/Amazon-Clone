@@ -40,14 +40,36 @@ export function getDeliveryOption(deliveryOptionId)
   return deliveryOption || deliveryOptions[0];
 }
 
+// check the weekend
+
+function isWeekend(date)
+{
+  const dayOfWeek = date.format('dddd');
+
+  return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+}
+
 export function calculateDeliveryOption(deliveryOption)
 {
   const today = dayjs();
 
-  const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
+  let remainingDays = deliveryOption.deliveryDays;
+
+  let deliveryDate = dayjs();
+
+  while(remainingDays > 0)
+  {
+    deliveryDate = deliveryDate.add(1 , 'days');
+
+    if(!isWeekend(deliveryDate))
+    {
+        remainingDays--;
+    }
+  }
 
   const dateString = deliveryDate.format('dddd, MMMM D');
 
   return dateString;
+  
 }
 
