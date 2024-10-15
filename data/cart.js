@@ -9,12 +9,15 @@ if(!cart)
   
       quantity: 2,
 
+      deliveryOptionId : '2'
     },
   
     {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
   
       quantity: 1,
+
+      deliveryOptionId : '2'
 
     }
   
@@ -51,6 +54,8 @@ export function addToCart(productId)
     productId : productId,
 
     quantity : 1,
+
+    deliveryOptionId : '1'
 
   });
   }
