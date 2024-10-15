@@ -24,9 +24,11 @@ export const deliveryOptions = [{
     priceCents : 999
 }];
 
+// Function for get delivery option
+
 export function getDeliveryOption(deliveryOptionId)
 {
-    let deliveryOption;
+  let deliveryOption;
 
     deliveryOptions.forEach(option => {
       if(option.id === deliveryOptionId)
@@ -35,7 +37,7 @@ export function getDeliveryOption(deliveryOptionId)
       };
     });
 
-    return deliveryOption || deliveryOptions[0];
+  return deliveryOption || deliveryOptions[0];
 }
 
 export function calculateDeliveryOption(deliveryOption)
@@ -48,3 +50,4 @@ export function calculateDeliveryOption(deliveryOption)
 
   return dateString;
 }
+
