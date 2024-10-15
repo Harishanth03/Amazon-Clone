@@ -8,7 +8,9 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 import { deliveryOptions } from '../data/deliveryOption.js';
 
-let cartSummaryHTML = '';
+function rendorOrderSummery()
+{
+  let cartSummaryHTML = '';
 
 cart.forEach(cartItem => {
 
@@ -213,9 +215,11 @@ document.querySelectorAll('.js-delivery-option').forEach((element) =>
     const {productId , deliveryOptionId} = element.dataset;
 
     updateDeliveryOption(productId , deliveryOptionId);
+
+    rendorOrderSummery(); // its help to instand reload of the page
   });
 });
+}
 
-
-
+rendorOrderSummery();
 
