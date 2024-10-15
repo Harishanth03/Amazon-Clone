@@ -123,4 +123,23 @@ export function updateQuantity(productId, newQuantity)
     console.error(`Product with ID ${productId} not found in the cart.`);
 
   }
+};
+
+//Create a function for update the delivery option and save it into the cart and make it interactive
+
+export function updateDeliveryOption(productId , deliveryOptionId)
+{
+  
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if(productId === cartItem.productId)
+    {
+      matchingItem = cartItem;
+    };
+  });
+  
+  matchingItem.deliveryOptionId = deliveryOptionId;
+
+  saveToStorage();
 }
