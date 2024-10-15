@@ -6,7 +6,7 @@ import { formatCurrency } from '../utils/money.js';
 
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-import { deliveryOptions , getDeliveryOption } from '../../data/deliveryOption.js';
+import { deliveryOptions , getDeliveryOption , calculateDeliveryOption } from '../../data/deliveryOption.js';
 
 import { renderPaymentSummary } from './paymentSummary.js';
 
@@ -86,19 +86,10 @@ export function rendorOrderSummery()
 function deliveryOptionHTML(matchingProduct , cartItem)
 {
   let html = '';
+
   deliveryOptions.forEach((deliveryOption) => {
 
-    //Get Today Date
-
-    const today = dayjs();
-
-    //get it in format
-
-    const deliveryDate = today.add(deliveryOption.deliveryDays , 'days');
-
-    //change it into string
-
-    const dataString = deliveryDate.format('dddd , MMMM , D');
+    const dataString = calculateDeliveryOption(deliveryOption);
 
     const priceString = deliveryOption.priceCents === 0 ? 'Free Delivery' : `$${formatCurrency(deliveryOption.priceCents / 100)} -`;
 
