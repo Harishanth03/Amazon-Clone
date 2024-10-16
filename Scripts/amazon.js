@@ -4,15 +4,15 @@ import { cart , addToCart , calculateCartQuantity } from "../data/cart.js";
 
 import { formatCurrency } from "./utils/money.js";
 
-//============================ We need to create a loop throw an array for genegrate the HTML for every product ======================
+//============================ We need to create a loop throw an array for generate the HTML for every product ======================
 
 // when every time loop works every product comes to function and generate the HTML
 
-let productHtml = ''; // its initialize outside the loop because everytime when loop works its should be empty string
+let productHtml = ''; // its initialize outside the loop because every time when loop works its should be empty string
 
 products.forEach(products => {
 
-    // += acually every time loops works the HTMl append to the existing html for create a list of product
+    // += actually every time loops works the HTMl append to the existing html for create a list of product
     productHtml += `
         <div class="product-container">
           <div class="product-image-container">
@@ -72,7 +72,7 @@ document.querySelector('.js-product-grid').innerHTML = productHtml;
 //select all button throw querySelectorAll then create a foreach loop for button and set the button as parameter
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
-    // create a event listner for all button
+    // create a event listener for all button
 
     button.addEventListener('click', () => {
 

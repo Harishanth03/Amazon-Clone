@@ -1,10 +1,12 @@
-const cart = 
+function Cart(localStorageKey)
+{
+    const cart = 
 {
     cartItems : undefined,
 
     loadLocalStorage()
     {
-        this.cartItems = JSON.parse(localStorage.getItem('cart-oop'));
+        this.cartItems = JSON.parse(localStorage.getItem(localStorageKey));
 
         if(!this.cartItems)
         {
@@ -33,7 +35,7 @@ const cart =
 
     saveToStorage()
     {
-        localStorage.setItem('cart-oop', JSON.stringify(this.cartItems));
+        localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems));
     },
 
      addToCart(productId)
@@ -52,7 +54,8 @@ const cart =
 
         if(matchingItem)
         {
-            this.matchingItem.quantity += 1;
+            // @ts-ignore
+            matchingItem.quantity += 1; 
         }
         else
         {
@@ -110,7 +113,7 @@ const cart =
 
             if (cartItem.productId === productId) 
             {
-            matchingItem = cartItem;
+                matchingItem = cartItem;
             }
 
         });
@@ -119,7 +122,8 @@ const cart =
         if (matchingItem) 
         {
 
-            this.matchingItem.quantity = newQuantity;
+            // @ts-ignore
+            matchingItem.quantity = newQuantity;
 
             // Save the updated cart to storage (assuming saveToStorage persists the cart)
             this.saveToStorage();
@@ -141,30 +145,32 @@ const cart =
         this.cartItems.forEach((cartItem) => {
             if(productId === cartItem.productId)
             {
-            matchingItem = cartItem;
+                matchingItem = cartItem;
             };
         });
         
-        this.matchingItem.deliveryOptionId = deliveryOptionId;
-
-        this.saveToStorage();
+        if(matchingItem)
+        {
+            // @ts-ignore
+            matchingItem.deliveryOptionId = deliveryOptionId;
+            this.saveToStorage();
+        }
     } 
 };
+return cart;
+}
+
+const cart = Cart('cart-oop');
+
+const businessCart = Cart('Cart-business');
 
 cart.loadLocalStorage();
 
+businessCart.loadLocalStorage();
+
+console.log(cart);
+
+console.log(businessCart);
 
 
-
-
-
-
-
-
-
-
-
-
-
-//Create a function for update the delivery option and save it into the cart and make it interactive
 
