@@ -169,9 +169,6 @@ const cartOop = new Cart('cart-oop');
 
 const bussinesCart = new Cart('cart-business')
 
-console.log(cartOop);
-
-console.log(bussinesCart);
 
 
 
