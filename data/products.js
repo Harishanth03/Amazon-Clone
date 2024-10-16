@@ -54,13 +54,13 @@ class Clothing extends Product
 
   constructor(productDetails)
   {
-    //super(productDetails);
+    super(productDetails);
     this.sizeChartLink = productDetails.sizeChartLink;
   };
 
   extraInfoHtml()
   {
-    super.extraInfoHtml();
+   // super.extraInfoHtml();
     
     return `<a href= "${this.sizeChartLink}" target= "_blank">Size Chart</a>`
   }
@@ -759,3 +759,11 @@ export  const products = [
   }
   return new Product(productDetails);
 });
+
+const date = new Date();
+
+
+
+
+
+console.log(date.toLocaleTimeString());
