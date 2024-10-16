@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "es6",          // Enables ES6 features
+      "module": "commonjs",     // Optional, for Node.js style modules
+      "checkJs": true           // Enables type checking in JS files
+    },
+    "exclude": [
+      "node_modules"            // Exclude node_modules to prevent IntelliSense from loading all its files
+    ]
+  }
+  
