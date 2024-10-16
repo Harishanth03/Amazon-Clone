@@ -52,6 +52,7 @@ export function addToCart(productId)
 
   if(matchingItem)
   {
+    // @ts-ignore
     matchingItem.quantity += 1;
   }
   else
@@ -118,6 +119,7 @@ export function updateQuantity(productId, newQuantity)
   if (matchingItem) 
   {
 
+    // @ts-ignore
     matchingItem.quantity = newQuantity;
 
     // Save the updated cart to storage (assuming saveToStorage persists the cart)
@@ -146,6 +148,7 @@ export function updateDeliveryOption(productId , deliveryOptionId)
     };
   });
   
+  // @ts-ignore
   matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
