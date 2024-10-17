@@ -5,13 +5,14 @@ import { rendorOrderSummery } from "../Scripts/CheckOut/orderSummary.js";
 
 import { renderPaymentSummary } from "./CheckOut/paymentSummary.js";
 
-import '../data/backend-practice.js';
+import { loadProducts } from "../data/products.js";
 
-renderCheckoutHeader();
+//import '../data/backend-practice.js';
+loadProducts(() => {
+    
+    renderCheckoutHeader();
 
-rendorOrderSummery();
+    rendorOrderSummery();
 
-renderPaymentSummary();
-
-
-
+    renderPaymentSummary();
+})
