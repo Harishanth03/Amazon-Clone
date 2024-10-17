@@ -88,6 +88,8 @@ export function removeCart(productId)
 
 };
 
+
+
 export function calculateCartQuantity()
 {
   let cartQuantity = 0;
@@ -152,4 +154,20 @@ export function updateDeliveryOption(productId , deliveryOptionId)
   matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
+}
+
+export function loadCart(callBack)
+{
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load' , () => {
+
+    console.log(xhr.response);
+
+    callBack();
+  })
+
+  xhr.open('GET' , 'https://supersimplebackend.dev/cart');
+
+  xhr.send();
 }
