@@ -105,8 +105,6 @@ export function loadProducts(callBack)
       return new Product(productDetails);
     });
 
-    console.log('Load products');
-
     callBack();
   })
 

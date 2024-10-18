@@ -9,7 +9,58 @@ import { loadProducts } from "../data/products.js";
 
 import { loadCart } from "../data/cart.js";
 
+
 Promise.all([
+
+    new Promise((resolve) => {
+
+        loadProducts(() => {
+
+            resolve();
+
+        });
+    }),
+    new Promise((resolve) => {
+
+        loadCart(() => {
+            
+            resolve();
+
+        });
+    })
+
+]).then(() => {
+
+    renderCheckoutHeader();
+
+    rendorOrderSummery();
+
+    renderPaymentSummary();
+
+})
+/*
+new Promise((resolve) => {
+
+    loadProducts(() => {
+
+        resolve();
+    });
+}).then(() => {
+
+    return new Promise((resolve) => {
+        loadCart(() => {
+            resolve();
+        });
+    });
+}).then(() => {
+    renderCheckoutHeader();
+
+    rendorOrderSummery();
+
+    renderPaymentSummary();
+})*/
+
+/*Promise.all([
     new Promise((resolve) => {
         loadProducts(() => {
             resolve('value1');
@@ -26,7 +77,7 @@ Promise.all([
     rendorOrderSummery();
 
     renderPaymentSummary();
-})
+})*/
 
 /*new Promise((resolve) => {
     loadProducts(() => {
@@ -61,4 +112,17 @@ Promise.all([
 
     });
 
+});*/
+
+
+/*loadProducts(() => {
+
+    loadCart(() => {
+        renderCheckoutHeader();
+
+        rendorOrderSummery();
+
+        renderPaymentSummary();
+    })
+    
 });*/
