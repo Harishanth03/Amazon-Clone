@@ -86,7 +86,44 @@ const tshirt = new Clothing(
     sizeChartLink: "images/clothing-size-chart.png"
   }
 
-)
+);
+
+export function loadproductFetch()
+{
+
+  const promise = fetch( 'https://supersimplebackend.dev/products').then((response) => {
+
+    return response.json()
+
+  }).then((productData) => {
+
+    products = productData.map((productDetails) => {
+
+      if(productDetails.type === 'clothing')
+      {
+
+        return new Clothing(productDetails);
+
+      }
+
+      return new Product(productDetails);
+
+    });
+
+    console.log('Load Product');
+
+  });
+
+  return promise;
+
+};
+
+/*
+loadproductFetch().then( () => {
+
+  console.log('Next Step');
+
+});*/
 
 export let products = [];
 

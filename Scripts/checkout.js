@@ -5,21 +5,14 @@ import { rendorOrderSummery } from "../Scripts/CheckOut/orderSummary.js";
 
 import { renderPaymentSummary } from "./CheckOut/paymentSummary.js";
 
-import { loadProducts } from "../data/products.js";
+import { loadProducts , loadproductFetch } from "../data/products.js";
 
 import { loadCart } from "../data/cart.js";
 
 
 Promise.all([
 
-    new Promise((resolve) => {
-
-        loadProducts(() => {
-
-            resolve();
-
-        });
-    }),
+   loadproductFetch(),
     new Promise((resolve) => {
 
         loadCart(() => {
