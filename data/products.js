@@ -92,6 +92,7 @@ export let products = [];
 
 export function loadProducts(callBack)
 {
+
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load' , () => {
