@@ -9,7 +9,30 @@ import { loadProducts , loadproductFetch } from "../data/products.js";
 
 import { loadCart } from "../data/cart.js";
 
+async function loadPage()
+{
 
+    await loadproductFetch();
+
+    await new Promise((resolve) => {
+
+        loadCart(() => {
+            
+            resolve();
+
+        });
+    });
+
+    renderCheckoutHeader();
+
+    rendorOrderSummery();
+
+    renderPaymentSummary();
+
+};
+
+loadPage();
+/*
 Promise.all([
 
    loadproductFetch(),
@@ -31,7 +54,7 @@ Promise.all([
     renderPaymentSummary();
 
 })
-/*
+
 new Promise((resolve) => {
 
     loadProducts(() => {
